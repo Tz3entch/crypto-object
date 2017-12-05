@@ -4,8 +4,12 @@ const crypto = require('crypto');
 
 class CryptoObject {
   constructor(options = {}) {
-    if (!options.password) {
-      throw new Error('No password provided');
+    if (!options.key) {
+      throw new Error('No key provided');
+    }
+
+    if (!options.iv) {
+      throw new Error('No iv provided');
     }
 
     if (options.keys.length === 0) {
@@ -36,7 +40,7 @@ class CryptoObject {
   }
 
   _encryptText(plaintext) {
-    const cipher = crypto.createCipher(this.options.algorithm, this.options.password);
+    const cipher = crypto.createCipheriv(this.options.algorithm, this.options.key, this.options.iv);
 
     let crypted = cipher.update(plaintext, 'utf8', 'hex');
     crypted += cipher.final('hex');
@@ -45,7 +49,7 @@ class CryptoObject {
   }
 
   _decryptText(ciphertext) {
-    const decipher = crypto.createDecipher(this.options.algorithm, this.options.password);
+    const decipher = crypto.createDecipheriv(this.options.algorithm, this.options.key, this.options.iv);
 
     let dec = decipher.update(ciphertext, 'hex', 'utf8');
     dec += decipher.final('utf8');
