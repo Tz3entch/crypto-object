@@ -15,12 +15,13 @@ $ npm i --save https://github.com/Euthor/crypto-object.git
 const CryptoObject = require('crypto-object');
 
 const cryptoObject = new CryptoObject({
-  password: 'monica', // The encryption password - Required
+  key: '3zTvzr3p67VC61jmV54rIYu1545x4TlY', // The encryption password - Required
+  iv: '60iP0h6vJoEaarvg' // The initialization vector (must have 16 bytes length) - Required
   keys: ['foo', 'bar'] // Which object keys to encrypt - Required
 });
 
 cryptoObject.encrypt({foo: 'hello', bar: 'world', id: 'x-001'})
-// `{ foo: '1a29e0e604', bar: '0523fee60f', id: 'x-001' }`
+// `{ foo: 'f1ccb1b097', bar: 'eec6afb09c', id: 'x-001' }`
 
 cryptoObject.decrypt({ foo: '1a29e0e604', bar: '0523fee60f', id: 'x-001' })
 // `{ foo: 'hello', bar: 'world', id: 'x-001' }`
