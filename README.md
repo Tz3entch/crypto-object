@@ -8,7 +8,7 @@
 ## Usage
 
 ```bash
-$ npm i --save https://github.com/Euthor/crypto-object.git
+$ npm i --save https://github.com/Tz3entch/crypto-object.git
 ```
 
 ```javascript
